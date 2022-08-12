@@ -16,7 +16,7 @@
                             <tr>
                                 <th>Title</th>
                                 <th>Category</th>
-                                <th>Category ID</th>
+                                <th>Category Name</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -25,7 +25,7 @@
                             <tr>
                                 <td>{{ $post->title }}</td>
                                 <td>{{ $post->post_text }}</td>
-                                <td>{{ $post->category_id }}</td>
+                                <td>{{ $post->category->categoryName }}</td>
                                 <td>
                                     <a href="{{ route('posts.edit', $post) }}">Edit</a>
                                     <form method="POST" action="{{ route('posts.destroy', $post) }}">

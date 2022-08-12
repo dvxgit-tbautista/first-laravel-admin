@@ -12,9 +12,9 @@
                     @if ($errors->any())
                         <div class="alert alert-danger">
                             <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
+                                @if ($errors)
+                                    <li style="color:red;">All field is required.</li>
+                                @endif
                             </ul>
                         </div>
                     @endif
