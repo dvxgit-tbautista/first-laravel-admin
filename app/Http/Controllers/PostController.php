@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
+use App\Models\Category;
 
 class PostController extends Controller
 {
@@ -14,7 +15,9 @@ class PostController extends Controller
      */
     public function index()
     {
-        return 'Hello! The post is here. lol';
+        $posts = Post::all();
+
+        return view('posts.index', compact('posts'));
     }
 
     /**
@@ -24,7 +27,9 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category::all();
+
+        return view('posts.create', compact('categories'));
     }
 
     /**
@@ -35,7 +40,13 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Post::create([
+            'title' => $request->input('title'),
+            'post_text' => $request->input('post_text'),
+            'category_id' => $request->input('category_id'),
+        ]);
+
+        return redirect()->route('posts.index');
     }
 
     /**
@@ -57,7 +68,9 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        $categories = Category::all();
+
+        return view('posts.edit', compact('post', 'categories'));
     }
 
     /**
@@ -69,7 +82,13 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        //
+        $post->update([
+            'title' => $request->input('title'),
+            'post_text' => $request->input('post_text'),
+            'category_id' => $request->input('category_id'),
+        ]);
+
+        return redirect()->route('posts.index');
     }
 
     /**
@@ -80,6 +99,6 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        return redirect()->route('posts.index');
     }
 }
