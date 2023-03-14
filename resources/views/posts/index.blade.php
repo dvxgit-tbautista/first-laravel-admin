@@ -21,21 +21,22 @@
                             </tr>
                         </thead>
                         <tbody>
-                        @foreach($posts as $post)
-                            <tr>
-                                <td>{{ $post->title }}</td>
-                                <td>{{ $post->post_text }}</td>
-                                <td>{{ $post->category->categoryName }}</td>
-                                <td>
-                                    <a href="{{ route('posts.edit', $post) }}">Edit</a>
-                                    <form method="POST" action="{{ route('posts.destroy', $post) }}">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" onclick="return confirm('Are you sure?')">Delete</button>
-                                    </form>
-                                </td>
-                            </tr>
-                        @endforeach
+                            @foreach ($posts as $post)
+                                <tr>
+                                    <td>{{ $post->title }}</td>
+                                    <td>{{ $post->post_text }}</td>
+                                    <td>{{ $post->categoryName }}</td>
+                                    <td>
+                                        <a href="{{ route('posts.edit', $post->id) }}">Edit</a>
+                                        <form method="POST" action="{{ route('posts.destroy', $post) }}">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit"
+                                                onclick="return confirm('Are you sure?')">Delete</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

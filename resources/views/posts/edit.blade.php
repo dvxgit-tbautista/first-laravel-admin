@@ -25,7 +25,7 @@
                         <select name="category_id" class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                             @foreach ($categories as $category)
                                 <option value="{{ $category->id }}"
-                                        @selected($category->id == $post->category_id)>{{ $category->name }}</option>
+                                        @selected($category->id == $post->categoryID)>{{ $category->categoryName }}</option>
                             @endforeach
                         </select>
                         <br /><br />
