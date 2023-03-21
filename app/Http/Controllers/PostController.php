@@ -17,7 +17,7 @@ class PostController extends Controller
     public function index()
     {
         // $posts = Post::with('category')->get();
-        $posts = Post::join('categories', 'posts.id', '=', 'categories.id')
+        $posts = Post::join('categories', 'posts.categoryID', '=', 'categories.id')
             ->select('categories.id', 'categoryName', 'title', 'post_text', 'posts.id')
             ->get();
 
@@ -89,7 +89,7 @@ class PostController extends Controller
         $post->update([
             'title' => $request->input('title'),
             'post_text' => $request->input('post_text'),
-            'category_id' => $request->input('category_id'),
+            'categoryID' => $request->input('category_id'),
         ]);
 
         return redirect()->route('posts.index');
